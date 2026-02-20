@@ -12,7 +12,7 @@ int main(){
     }
 
     int x;
-    cout<<"Enter a number: ";
+    cout<<"Enter a number to count: ";
     cin>>x;
 
     int count = 0;
