@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
-void display(int a[], int size){
+void display(int *a, int size){
     for(int i = 0; i<=4; i++){
         cout<<a[i]<<" ";
     }
     cout<<endl;
     return;
 }
-void change(int b[], int size){
+void change(int b[], int size){ //int *b
     b[0] = 100;
 }
 int main(){
