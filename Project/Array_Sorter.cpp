@@ -2,30 +2,31 @@
 using namespace std;
 
 //Function to sort array in Ascending Order
-void bubbleSortAscending(int arr[], int n){
+int bubbleSortAscending(int arr[], int n){
+    int swaps = 0;
     for(int i = 0; i < n - 1; i++){
         for(int j = 0; j < n - i - 1; j++){
             if(arr[j] > arr[j+1]){
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                swap(arr[j], arr[j + 1]);
+                swaps++;
             }
         }
     }
+    return swaps;
 }
 
 //Function to sort array in Descending Order
-void bubbleSortDescending(int arr[], int n){
+int bubbleSortDescending(int arr[], int n){
+    int swaps = 0;
     for(int i = 0; i < n - 1; i++){
         for(int j = 0; j < n - i - 1; j++){
             if(arr[j] < arr[j+1]){
-                int temp;
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                swap(arr[j], arr[j+1]);
+                swaps++;
             }
         }
     }
+    return swaps;
 }
 
 //Function to display array
@@ -37,26 +38,43 @@ void display(int arr[], int n){
 }
 
 int main(){
-    int arr[10];
-    int n = 10;
-    cout<<"Enter 10 integers: ";
+    int n , choice;
+    cout << "Enter how many numbers you want to sort: ";
+    cin >> n;
+    int arr[n];
+
+    cout << "Enter "<< n <<" Integers: ";
+
     for(int i = 0; i < n; i++){
         cin >> arr[i];
     }
     
-    int ascArr[10], desArr[10];
-    for(int i = 0; i < n; i++){
-        ascArr[i] = arr[i];
-        desArr[i] = arr[i];
+    cout << "\n--------- Sorting Menu ---------\n";
+    cout << "1. Sort in Ascending Order\n";
+    cout << "2. Sort in Descending Order\n";
+    cout << "--------------------------------\n";
+    cout << "Enter Choice: ";
+    cin >> choice;
+    int swaps = 0;
+    switch (choice){
+        case 1:
+        swaps = bubbleSortAscending(arr, n);
+        cout << "\nSorted in Ascending Order: ";
+        display(arr, n);
+        break;
+
+        case 2:
+        swaps = bubbleSortDescending(arr, n);
+        cout << "\n Sorted in Descending Order: ";
+        display(arr, n);
+        break;
+        default:
+        cout << "Invalid Choice!";
+        return 0;
     }
-    bubbleSortAscending(ascArr, n);
-    bubbleSortDescending(desArr, n);
-
-    cout<<"\nSorted in Ascending Order: ";
-    display(ascArr, n);
-
-    cout<<"\nSorted in Descending Order: ";
-    display(desArr, n);
-
+    cout << "\nNumber of swaps performed: " << swaps << endl;
+    cout << "Best Case   : O(n)\n";
+    cout << "Average Case: O(n^2)\n";
+    cout << "Worst Case  : O(n^2)\n";
     return 0;
 }
